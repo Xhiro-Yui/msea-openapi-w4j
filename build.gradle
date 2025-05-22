@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.sleepingcats.xhiro-yui'
+version = '0.0.1'
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = 'msea-openapi-w4j'
+
+            pom {
+                name = 'msea-openapi-w4j'
+                description = 'A Java wrapper for the MSEA OpenAPI.'
+                url = 'https://github.com/Xhiro-Yui/msea-openapi-w4j'
+
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'xhiro-yui'
+                        name = 'Xhiro Yui'
+                        email = 'xhiro.yui@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/Xhiro-Yui/msea-openapi-w4j.git'
+                    developerConnection = 'scm:git:ssh://github.com:Xhiro-Yui/msea-openapi-w4j.git'
+                    url = 'https://github.com/Xhiro-Yui/msea-openapi-w4j'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Xhiro-Yui/msea-openapi-w4j")
+            credentials {
+                username = project.findProperty("gpr.user")
+                password = project.findProperty("gpr.key")
+            }
+        }
+    }
+}
