@@ -18,6 +18,10 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    implementation 'ch.qos.logback:logback-classic:1.5.18'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.0'
 }
 
 test {
